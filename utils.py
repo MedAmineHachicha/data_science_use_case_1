@@ -8,6 +8,12 @@ import numpy as np
 
 
 def plot_categorical(df, col, target="TARGET_FLAG"):
+    """
+    :param df: pandas DataFrame, the train dataset
+    :param col: string, the name of the categorical variable that we want to visualize
+    :param target: string, name of the target column
+    :return: Countplot of the variable on the left, and  taget proportions per category on the right
+    """
     crosstab = pd.crosstab(df[col], df[target])
     crosstab_prop = 100 * crosstab.div(crosstab.sum(axis=1), axis=0)
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
@@ -20,6 +26,12 @@ def plot_categorical(df, col, target="TARGET_FLAG"):
 
 
 def plot_continuous(df, col, target="TARGET_FLAG"):
+    """
+    :param df: pandas DataFrame, the train dataset
+    :param col: string, the name of the continuous variable that we want to visualize
+    :param target: string, name of the target column
+    :return: Box plot vs. target and Variable density per target category
+    """
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
     fig.suptitle(col)
     sns.boxplot(x="TARGET_FLAG", y=col, data=df, ax=ax1)
@@ -31,6 +43,12 @@ def plot_continuous(df, col, target="TARGET_FLAG"):
 
 
 def missing_values_nb(df_train, df_test, col):
+    """
+    :param df_train: pandas DataFrame: train dataset
+    :param df_test: pandas DataFrame: test dataset
+    :param col: string, the name of the column that we want to investigate
+    :return: Number and percentage of missing values for columns col in train and test sets.
+    """
     miss_train = df_train[col].isna().sum()
     miss_test = df_test[col].isna().sum()
 

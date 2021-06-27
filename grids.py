@@ -21,3 +21,11 @@ RF_grid = {'n_estimators': n_estimators,
 SVM_grid = {'C': [0.1, 1, 10, 100, 1000],
             'gamma': [1, 0.1, 0.01, 0.001, 0.0001],
             'kernel': ['rbf', 'poly']}
+
+# Create XGBoost Grid
+XGB_grid = {
+        'min_child_weight': [1, 5, 10],
+        'gamma': [0.5, 1, 2, 5],
+        'subsample': [0.6, 0.8, 1.0],
+        'max_depth': [5, 10, 20, 40]
+}
